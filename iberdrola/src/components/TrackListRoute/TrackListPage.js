@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 
 import {loadTracks} from '../../actions/appActions';
+import cleanTracks from '../../utilities/cleanTracks';
 
 import TrackListContent from './TrackListContent';
 
@@ -18,18 +19,6 @@ export default function TrackListPage() {
   useEffect(() => {
     dispatch(loadTracks())
   }, [dispatch])
-
-  const cleanTracks = (verboseTracks) => verboseTracks.map(item => (
-    {
-      trackName: item.trackName,
-      artist: item.artistName,
-      price: {
-        amount: item.collectionPrice,
-        currency: item.currency,
-      },
-      artworkUrl: item.artworkUrl60
-    }
-  ))
 
   useEffect(() => {
     if (payloadTracks) {

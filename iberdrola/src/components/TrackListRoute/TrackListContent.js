@@ -4,24 +4,16 @@ import Currency from '../text/Currency';
 import {useHistory} from 'react-router-dom'
 
 export default function TrackListContent({data}) {
-  const cleanString = (str) => {
-    return str
-      .split(' ')
-      .map((item) => item.replace(',','').replace('?',''))
-      .join('_')
-  }
-
   const history = useHistory();
 
-  const onDetailsButtonClick = (({trackName, artist}) => {
-    const label = `${cleanString(trackName)}-${cleanString(artist)}`
+  const onDetailsButtonClick = (label => {
     history.push(`track/${label}`)
   })
 
   return (
     <>
       {
-        data.map(({trackName, artist, price, artworkUrl}) => (
+        data.map(({label, trackName, artist, price, artworkUrl}) => (
           <div key={trackName}>
             <div className="trackListPage-track">
               <img alt='' src={artworkUrl} className="trackListPage-thumb"/>
@@ -31,10 +23,7 @@ export default function TrackListContent({data}) {
                 <Currency>{price}</Currency>
                 <StylishButton 
                   className="trackListPage-button"
-                  onClick={() => onDetailsButtonClick({
-                    trackName,
-                    artist,
-                  })}
+                  onClick={() => onDetailsButtonClick(label)}
                 >
                   View details
                 </StylishButton>
