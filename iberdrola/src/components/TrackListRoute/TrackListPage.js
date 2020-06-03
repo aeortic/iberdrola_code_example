@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react'
-import {useDispatch} from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
 
 import {loadTracks} from '../../actions/appActions';
-import StylishButton from '../buttons/StylishButton';
-import Currency from '../text/Currency';
+
+import TrackListContent from './TrackListContent';
 
 import './TrackListPage.css';
 
@@ -31,21 +30,8 @@ const data = [
 ] 
 
 export default function TrackListPage() {
-  const history = useHistory();
-
-  const cleanString = (str) => {
-    return str
-      .split(' ')
-      .map((item) => item.replace(',','').replace('?',''))
-      .join('_')
-  }
-
-  const onDetailsButtonClick = (({trackName, artist}) => {
+  // const tracks = useSelector(state => state.app.tracks);
   
-    const label = `${cleanString(trackName)}-${cleanString(artist)}`
-    history.push(`track/${label}`)
-  })
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -56,30 +42,7 @@ export default function TrackListPage() {
     <div className="trackListPage">
       <h2>Dog, you made it to the track list</h2>
       <ul>
-      {
-        data.map(({trackName, artist, price, artworkUrl}) => (
-          <li key={trackName}>
-            <div className="trackListPage-track">
-              <img alt='' src={artworkUrl} className="trackListPage-thumb"/>
-              <div className="trackListPage-trackInfo">
-                <div className="trackListPage-noOverflow">Title: {trackName}</div>
-                <div className="trackListPage-noOverflow">Artist: {artist}</div>
-                <Currency>{price}</Currency>
-                <StylishButton 
-                  className="trackListPage-button"
-                  onClick={() => onDetailsButtonClick({
-                    trackName,
-                    artist,
-                  })}
-                >
-                  View details
-                </StylishButton>
-              </div>
-            </div>
-            
-          </li>
-        ))
-      }
+        <TrackListContent data={data}/>
       </ul>
     </div>
   )
