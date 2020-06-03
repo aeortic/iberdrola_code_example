@@ -1,0 +1,25 @@
+.StylishButton {
+  cursor: pointer;
+  border: none;
+  background-color: #1890ff;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.StylishButton--rounded {
+  border-radius: 3px;
+}
+
+.StylishButton--green {
+  background-color: #18ff66;
+}
+
+.StylishButton--red {
+  background-color: #ff1818;
+}
+
+.StylishButton--disabled {
+  cursor: unset;
+  background-color: #b1b1b1;
+}
