@@ -22,7 +22,7 @@ export default function TrackListContent({data}) {
     <>
       {
         data.map(({trackName, artist, price, artworkUrl}) => (
-          <li key={trackName}>
+          <div key={trackName}>
             <div className="trackListPage-track">
               <img alt='' src={artworkUrl} className="trackListPage-thumb"/>
               <div className="trackListPage-trackInfo">
@@ -40,7 +40,7 @@ export default function TrackListContent({data}) {
                 </StylishButton>
               </div>
             </div>
-          </li>
+          </div>
         ))
       }
     </>
