@@ -3,6 +3,7 @@ import React from 'react'
 import {useHistory} from 'react-router-dom'
 
 import StylishButton from '../buttons/StylishButton';
+import Currency from '../text/Currency';
 
 import './TrackListPage.css';
 
@@ -54,9 +55,9 @@ export default function TrackListPage() {
             <div className="trackListPage-track">
               <img alt='' src={artworkUrl} className="trackListPage-thumb"/>
               <div className="trackListPage-trackInfo">
-                <div>Title: {trackName}</div>
-                <div>Artist: {artist}</div>
-                <div>{price.amount}</div>
+                <div className="trackListPage-noOverflow">Title: {trackName}</div>
+                <div className="trackListPage-noOverflow">Artist: {artist}</div>
+                <Currency>{price}</Currency>
                 <StylishButton 
                   className="trackListPage-button"
                   onClick={() => onDetailsButtonClick({
