@@ -1,7 +1,8 @@
-import React from 'react'
-
+import React, {useEffect} from 'react'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
+import {loadTracks} from '../../actions/appActions';
 import StylishButton from '../buttons/StylishButton';
 import Currency from '../text/Currency';
 
@@ -44,6 +45,12 @@ export default function TrackListPage() {
     const label = `${cleanString(trackName)}-${cleanString(artist)}`
     history.push(`track/${label}`)
   })
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadTracks())
+  }, [dispatch])
 
   return (
     <div className="trackListPage">
