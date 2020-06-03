@@ -5,6 +5,9 @@ import {
   Route,
 } from "react-router-dom";
 
+import TrackListPage from './components/TrackListRoute/TrackListPage';
+import TrackDetailsPage from './components/TrackDetailsRoute/TrackDetailsPage';
+
 import './App.css';
 
 function App() {
@@ -12,10 +15,10 @@ function App() {
     <Router>
       <Switch>
         <Route path="/track">
-          <div>details</div>
+          <TrackDetailsPage />
         </Route>
         <Route path="/">
-          <div>track list</div>
+          <TrackListPage />
         </Route>
       </Switch>
     </Router>
