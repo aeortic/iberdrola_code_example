@@ -1,13 +1,21 @@
+.trackListPage {
+  margin: 20px;
+}
+
 .trackListPage-track {
   display: flex;
   margin-bottom: 30px;
 }
 
 .trackListPage-trackInfo {
-  max-width: 200px;
+  max-width: 300px;
   margin-left: 20px;
 }
 
 .trackListPage-button {
   width: 100%;
+}
+
+.trackListPage-thumb {
+  height: 5em;
 }

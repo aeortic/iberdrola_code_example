@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {useHistory} from 'react-router-dom'
+
 import StylishButton from '../buttons/StylishButton';
 
 import './TrackListPage.css';
@@ -27,20 +29,43 @@ const data = [
 ] 
 
 export default function TrackListPage() {
+  const history = useHistory();
+
+  const cleanString = (str) => {
+    return str
+      .split(' ')
+      .map((item) => item.replace(',','').replace('?',''))
+      .join('_')
+  }
+
+  const onDetailsButtonClick = (({trackName, artist}) => {
+  
+    const label = `${cleanString(trackName)}-${cleanString(artist)}`
+    history.push(`track/${label}`)
+  })
+
   return (
-    <>
+    <div className="trackListPage">
       <h2>Dog, you made it to the track list</h2>
       <ul>
       {
         data.map(({trackName, artist, price, artworkUrl}) => (
           <li key={trackName}>
             <div className="trackListPage-track">
-              <img src={artworkUrl} />
+              <img alt='' src={artworkUrl} className="trackListPage-thumb"/>
               <div className="trackListPage-trackInfo">
                 <div>Title: {trackName}</div>
                 <div>Artist: {artist}</div>
                 <div>{price.amount}</div>
-                <StylishButton className="trackListPage-button">View details</StylishButton>
+                <StylishButton 
+                  className="trackListPage-button"
+                  onClick={() => onDetailsButtonClick({
+                    trackName,
+                    artist,
+                  })}
+                >
+                  View details
+                </StylishButton>
               </div>
             </div>
             
@@ -48,6 +73,6 @@ export default function TrackListPage() {
         ))
       }
       </ul>
-    </>
+    </div>
   )
 }
